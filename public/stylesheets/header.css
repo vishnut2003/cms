@@ -1,0 +1,56 @@
+header#main-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 25px;
+    box-shadow: 0 0 22px 0px #00000033;
+}
+
+.inner-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-inner{
+    width: 50%;
+}
+
+.header-logo{
+    width: 100px;
+}
+
+.header-options-inner{
+    width: 50%;
+}
+
+.header-options{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.header-options div{
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.header-options div p {
+    line-height: 15px;
+    font-size: 15px;
+    margin-right: 15px;
+    font-weight: 600;
+    color: black;
+}
+
+.header-options div p a {
+    color: #0A699E;
+    font-size: 13px;
+}
+
+.header-options .user-icon-header{
+    width: 40px;
+    height: auto;
+}

@@ -2,9 +2,9 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 const hbs = require('express-handlebars');
-const { dbconnect } = require('./config/dbconnection')
+const { dbconnect } = require('./config/dbconnection');
+const logEvents = require('./logEvents');
 
 var indexRouter = require('./routes/index');
 
@@ -29,7 +29,12 @@ app.engine('hbs', hbs.engine({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.use(logger('dev'));
+// Log Requests
+app.use((req, res, next) => {
+  logEvents(req.method, req.url, '', 'reqLogs.log')
+  next();
+})
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

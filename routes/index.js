@@ -3,9 +3,17 @@ var router = express.Router();
 const userHelpers = require('../helpers/userHelpers')
 
 /* GET home page. */
-router.get('^/$|index(.html)?', function(req, res, next) {
+router.get('^/$|index(.html)?|login', function(req, res, next) {
   res.render('frontend/login');
 });
+
+router.post('/login', (req, res) => {
+  userHelpers.doLogin(req.body).then(() => {
+    res.send('Login Success')
+  }).catch(() => {
+    res.send('Login error')
+  })
+})
 
 router.get('/register', (req, res) => {
   res.render('frontend/register');

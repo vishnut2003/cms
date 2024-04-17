@@ -17,7 +17,28 @@ module.exports = {
                 reject()
             }
         })
-
         
+    },
+    doLogin: (user) => {
+        
+        return new Promise( async (resolve, reject) => {
+            const usernameExist = await db.getdb().collection(collections.USER_COLLECTIONS).findOne({username: user.username})
+            const emailExist = await db.getdb().collection(collections.USER_COLLECTIONS).findOne({email: user.username})
+            
+            if(usernameExist){
+                await bcrypr.compare(user.password, usernameExist.password, (err, result) => {
+                    if (result) 
+                        resolve()
+                })
+            }else if(emailExist){
+                await bcrypr.compare(user.password, emailExist.password, (err, result) => {
+                    if (result) 
+                        resolve()
+                })
+            }else{
+                reject()
+            }
+        })
+
     }
 }

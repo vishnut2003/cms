@@ -49,3 +49,17 @@ input[type="submit"]:hover {
     border-color: #0A699E;
     
 }
+
+.error-message {
+    width: 100%;
+    padding: 7px;
+    background-color: rgb(255 0 0 / 11%);
+    border: 2px solid red;
+    border-radius: 5px;
+}
+
+.error-message p{
+    font-size: 14px;
+    color: red;
+    text-align: center;
+}

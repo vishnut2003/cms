@@ -21,17 +21,23 @@
             </div>
             <div class="form-field">
                 <label for="address">Address</label>
-                <textarea id="address" name="address" rows="3"></textarea>
+                <textarea id="address" name="address" rows="2"></textarea>
             </div>
             <div class="form-field">
                 <label for="department">Department</label>
-                <select name="department">
+                <select name="department" required>
+                    <option value="">- select -</option>
                     <option value="Website Development">Website Development</option>
                     <option value="Social Media Marketing">Social Media Marketing</option>
                     <option value="SEO">SEO</option>
                 </select>
             </div>
             <input type="submit">
+            {{#if registerErr}}
+                <div class="error-message">
+                    <p>Registration Failed</p>
+                </div>
+            {{/if}}
         </form>
         <div class="other-options-register">
             <a href="/login">Login</a>

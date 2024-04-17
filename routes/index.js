@@ -12,8 +12,11 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-  userHelpers.registerUser(req.body)
-  res.send('User Successfully Registerd')
+  userHelpers.registerUser(req.body).then((response) => {
+    res.send('Registration success')
+  }).catch(() => {
+    res.render('frontend/register', {registerErr: true})
+  })
 })
 
 module.exports = router;

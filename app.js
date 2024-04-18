@@ -3,10 +3,12 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 const hbs = require('express-handlebars');
+const session = require('express-session');
 const { dbconnect } = require('./config/dbconnection');
 const logEvents = require('./logEvents');
 
 var indexRouter = require('./routes/index');
+const adminRouter = require('./routes/admin')
 
 var app = express();
 
@@ -15,6 +17,14 @@ dbconnect((err) => {
   if(err) console.log(err);
   else console.log('DB Connected');
 })
+
+// Session config
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: 'GFHG^%$$^%HJKFGUF^HJGHF%',
+  cookie: {maxAge: 60000}
+}))
 
 // view engine setup
 app.engine('hbs', hbs.engine({
@@ -41,6 +51,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

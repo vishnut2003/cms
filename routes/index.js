@@ -20,7 +20,8 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-  userHelpers.registerUser(req.body).then((response) => {
+  userHelpers.registerUser(req.body).then((createdUser) => {
+    userHelpers.saveSession(createdUser, req.session)
     res.send('Registration success')
   }).catch(() => {
     res.render('frontend/register', {registerErr: true})

@@ -29,11 +29,15 @@ module.exports = {
                 await bcrypr.compare(user.password, usernameExist.password, (err, result) => {
                     if (result) 
                         resolve()
+                    else
+                        reject()
                 })
             }else if(emailExist){
                 await bcrypr.compare(user.password, emailExist.password, (err, result) => {
                     if (result) 
                         resolve()
+                    else
+                        reject()
                 })
             }else{
                 reject()
